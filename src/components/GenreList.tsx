@@ -1,10 +1,15 @@
 import { useState } from "react";
 import useGenres, { Genre } from "../hooks/useGenres";
-import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import { HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
 import GetCroppedImageUrl from "../services/image-url";
 
 const GenreList = () => {
   const { genres, error, isLoading } = useGenres();
+
+  // if there are an error, we dont want to show anything
+  if (error) return null;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
