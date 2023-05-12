@@ -22,6 +22,7 @@ function App() {
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
     null
   );
+  const [selectedCriteria, setSelectedCriteria] = useState("");
 
   return (
     <Grid
@@ -51,11 +52,15 @@ function App() {
             selectedPlatform={selectedPlatform}
             onSelectPlatform={(platform) => setSelectedPlatform(platform)}
           ></PlatformSelector>
-          <SortSelector />
+          <SortSelector
+            selectedCriteria={selectedCriteria}
+            onSortSelection={(criteria) => setSelectedCriteria(criteria)}
+          />
         </HStack>
         <GameGrid
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
+          selectedCriteria={selectedCriteria}
         ></GameGrid>
       </GridItem>
     </Grid>
