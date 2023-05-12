@@ -40,7 +40,7 @@ const usePlatforms = () => {
       });
 
       return ()=>controller.abort();
-  });
+  }, []);
 
   return {platforms, error, isLoading};
 }
