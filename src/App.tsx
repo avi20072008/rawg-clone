@@ -1,6 +1,8 @@
 import {
+  Box,
   Button,
   ButtonGroup,
+  Flex,
   Grid,
   GridItem,
   HStack,
@@ -47,16 +49,18 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <HStack spacing={5} paddingLeft={2} marginBottom={5}>
-          <PlatformSelector
-            selectedPlatform={selectedPlatform}
-            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
-          ></PlatformSelector>
+        <Flex paddingLeft={2} marginBottom={5}>
+          <Box marginRight={5}>
+            <PlatformSelector
+              selectedPlatform={selectedPlatform}
+              onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+            ></PlatformSelector>
+          </Box>
           <SortSelector
             selectedCriteria={selectedCriteria}
             onSortSelection={(criteria) => setSelectedCriteria(criteria)}
           />
-        </HStack>
+        </Flex>
         <GameGrid
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
