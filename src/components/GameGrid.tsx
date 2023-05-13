@@ -6,12 +6,14 @@ import { Genre } from "../hooks/useGenres";
 import { Platform } from "../hooks/usePlatforms";
 
 interface Props {
+  searchText: string;
   selectedGenre: Genre | null;
   selectedPlatform: Platform | null;
   selectedCriteria: string;
 }
 //Through the props, we will get both search params and we will use it to send it to fetch filtered games.
 const GameGrid = ({
+  searchText,
   selectedGenre,
   selectedPlatform,
   selectedCriteria,
@@ -24,6 +26,7 @@ const GameGrid = ({
   if (selectedPlatform != null) platformParam = selectedPlatform.id;
 
   const { games, error, isLoading } = useGames(
+    searchText,
     param,
     platformParam,
     selectedCriteria

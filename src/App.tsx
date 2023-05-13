@@ -25,6 +25,7 @@ function App() {
     null
   );
   const [selectedCriteria, setSelectedCriteria] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   return (
     <Grid
@@ -38,7 +39,12 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar
+          onSearch={(q) => {
+            setSearchText(q);
+          }}
+          searchText={searchText}
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
@@ -62,6 +68,7 @@ function App() {
           />
         </Flex>
         <GameGrid
+          searchText={searchText}
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           selectedCriteria={selectedCriteria}

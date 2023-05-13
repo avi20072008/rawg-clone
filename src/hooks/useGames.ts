@@ -22,7 +22,7 @@ export interface Game {
     results: Game[];
   }
 
-const useGames = (selectedGenre: number, selectedPlatform: number, selectedCriteria: string) => {
+const useGames = (searchText: string, selectedGenre: number, selectedPlatform: number, selectedCriteria: string) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,16 +40,23 @@ const useGames = (selectedGenre: number, selectedPlatform: number, selectedCrite
     // }
     
     interface IParamList {
+      search?: string;
       genres?: number;
       parent_platforms?: number;
       ordering?: string;
     }
     
     const params: IParamList = {
+      search: searchText,
       genres: selectedGenre,
       parent_platforms: selectedPlatform,
       ordering: selectedCriteria
     };
+
+    console.log('searchText.length' + searchText.length);
+
+    if(searchText.length < 1)
+      delete params.search;
     
     // if search param is not provided, remove the search parameter
     if(selectedGenre === -1)
@@ -61,6 +68,7 @@ const useGames = (selectedGenre: number, selectedPlatform: number, selectedCrite
 
     if(selectedCriteria.length <= 0)
       delete params.ordering;
+  
 
     setIsLoading(true);
     apiClient
@@ -78,9 +86,9 @@ const useGames = (selectedGenre: number, selectedPlatform: number, selectedCrite
       });
 
       return ()=>controller.abort();
-  }, [selectedGenre, selectedPlatform, selectedCriteria]);
+  }, [searchText, selectedGenre, selectedPlatform, selectedCriteria]);
 
-  return {games, error, isLoading};
+  return { games, error, isLoading};
 }
  
 export default useGames;
