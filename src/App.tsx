@@ -17,6 +17,7 @@ import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
+import GameHeader from "./components/GameHeader";
 
 function App() {
   //handle Genre selection from Side bar
@@ -55,18 +56,24 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex paddingLeft={2} marginBottom={5}>
-          <Box marginRight={5}>
-            <PlatformSelector
-              selectedPlatform={selectedPlatform}
-              onSelectPlatform={(platform) => setSelectedPlatform(platform)}
-            ></PlatformSelector>
-          </Box>
-          <SortSelector
-            selectedCriteria={selectedCriteria}
-            onSortSelection={(criteria) => setSelectedCriteria(criteria)}
-          />
-        </Flex>
+        <Box paddingLeft={2}>
+          <GameHeader
+            selectedGenre={selectedGenre}
+            selectedPlatform={selectedPlatform}
+          ></GameHeader>
+          <Flex marginBottom={5}>
+            <Box marginRight={5}>
+              <PlatformSelector
+                selectedPlatform={selectedPlatform}
+                onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+              ></PlatformSelector>
+            </Box>
+            <SortSelector
+              selectedCriteria={selectedCriteria}
+              onSortSelection={(criteria) => setSelectedCriteria(criteria)}
+            />
+          </Flex>
+        </Box>
         <GameGrid
           searchText={searchText}
           selectedGenre={selectedGenre}
