@@ -1,5 +1,8 @@
 import { useState } from "react";
 import useGenres, { Genre } from "../hooks/useGenres";
+
+import genresData from "../data/genres";
+
 import {
   Button,
   HStack,
@@ -18,11 +21,19 @@ interface Props {
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
-  const { genres, error, isLoading } = useGenres();
+  // instead of getting it from API or database, we will get static data for genres.
+  //const { genres, error, isLoading } = useGenres();
 
+  // here genresData is genres data loaded from data/genres.ts file
+  const { genres, error, isLoading } = {
+    genres: genresData,
+    error: null,
+    isLoading: false,
+  };
+
+  // you can comment below lines as we are loading static data so not required.
   // if there are an error, we dont want to show anything
   if (error) return null;
-
   if (isLoading) return <Spinner />;
 
   return (
