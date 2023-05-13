@@ -3,6 +3,7 @@ import useGenres, { Genre } from "../hooks/useGenres";
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -26,6 +27,9 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
 
   return (
     <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
       <List>
         {genres.map((genre) => (
           <ListItem key={genre.id} paddingY="7px">
@@ -34,8 +38,11 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
                 src={GetCroppedImageUrl(genre.image_background)}
                 borderRadius={8}
                 boxSize="32px"
+                objectFit="cover"
               ></Image>
               <Button
+                whiteSpace="normal"
+                textAlign="left"
                 color={genre.id === selectedGenre?.id ? "gray.100" : "gray.500"}
                 fontSize="lg"
                 variant="link"
